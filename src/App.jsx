@@ -1,7 +1,11 @@
 import "./App.css";
 
 function App() {
-  return <h1>Welcome To QuinnCalendar</h1>;
+  return (
+    <h1 className="font-bold">
+      Welcome To <span className="text-cyan-300">QuinnCalendar</span>
+    </h1>
+  );
 }
 
 export default App;
