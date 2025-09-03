@@ -4,10 +4,14 @@ import Header from "./Header";
 import CalendarMonth from "./CalendarMonth";
 import useInfiniteScroll from "../hooks/useInfiniteScroll";
 import { parseJournalEntries } from "../utils/dateUtils";
+import JournalCarousel from "./JournalCarousel";
 
 const InfiniteCalendar = () => {
   const journalEntries = parseJournalEntries(journalData);
   const now = new Date();
+  const [isCarouselOpen, setIsCarouselOpen] = useState(false);
+  const [selectedEntry, setSelectedEntry] = useState(null);
+
   const [months, setMonths] = useState([
     {
       year: now.getFullYear(),
@@ -19,30 +23,42 @@ const InfiniteCalendar = () => {
   const { currentMonth, currentYear, scrollContainerRef, monthRefs } =
     useInfiniteScroll(months, setMonths);
 
+  const handleEntryClick = (entry) => {
+    setSelectedEntry(entry);
+    setIsCarouselOpen(true);
+  };
+
+  const handleCloseCarousel = () => {
+    setIsCarouselOpen(false);
+    setSelectedEntry(null);
+  };
+
   return (
     <div className="flex h-screen flex-col bg-gray-50">
       <Header currentMonth={currentMonth} currentYear={currentYear} />
       <div
         ref={scrollContainerRef}
-        className="flex-1 overflow-y-auto scroll-smooth px-0 sm:px-2"
-        style={{
-          scrollBehavior: "smooth",
-          contain: "layout style paint",
-          transform: "translateZ(0)",
-          backfaceVisibility: "hidden",
-        }}
+        className="scrollbar-hide flex-1 overflow-y-auto"
       >
-        {months.map(({ year, month, key }) => (
+        {months.map((monthData) => (
           <CalendarMonth
-            key={key}
-            year={year}
-            month={month}
-            monthKey={key}
+            key={monthData.key}
+            year={monthData.year}
+            month={monthData.month}
+            monthKey={monthData.key}
+            onEntryClick={handleEntryClick}
             journalEntries={journalEntries}
             monthRefs={monthRefs}
           />
         ))}
       </div>
+
+      <JournalCarousel
+        isOpen={isCarouselOpen}
+        onClose={handleCloseCarousel}
+        initialEntry={selectedEntry}
+        journalData={journalData}
+      />
     </div>
   );
 };
