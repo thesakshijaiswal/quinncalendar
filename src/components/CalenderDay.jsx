@@ -1,3 +1,4 @@
+import StarRating from "./StarRating";
 const CalendarDay = ({ dayData, journalEntries, onEntryClick }) => {
   if (!dayData) {
     return (
@@ -27,8 +28,8 @@ const CalendarDay = ({ dayData, journalEntries, onEntryClick }) => {
                 className="flex flex-col items-center justify-center"
               >
                 <div className="mb-1 flex w-full justify-center">
-                  <div className="bg-opacity-80 rounded-sm bg-black py-0.5 text-xs font-medium text-white lg:px-2">
-                    ⭐ {entry.rating}
+                  <div className="bg-opacity-80 rounded-sm px-1 py-0.5 lg:px-2">
+                    <StarRating rating={entry.rating} size="xs" />
                   </div>
                 </div>
 
