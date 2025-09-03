@@ -27,7 +27,7 @@ const CalendarMonth = ({
   return (
     <div
       ref={monthRef}
-      className="mb-4 rounded-lg bg-white shadow-sm"
+      className="mb-4 rounded-lg bg-white shadow-sm sm:mx-4"
       data-month-key={monthKey}
     >
       <div className="border-b border-gray-100 p-4">
@@ -40,7 +40,7 @@ const CalendarMonth = ({
         {dayNames.map((day) => (
           <div
             key={day}
-            className="p-3 text-center text-xs font-semibold text-gray-600 uppercase md:text-sm"
+            className="p-2 text-center text-xs font-semibold text-gray-600 uppercase sm:p-3 sm:text-sm"
           >
             {day}
           </div>

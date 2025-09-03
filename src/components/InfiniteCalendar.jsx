@@ -24,8 +24,13 @@ const InfiniteCalendar = () => {
       <Header currentMonth={currentMonth} currentYear={currentYear} />
       <div
         ref={scrollContainerRef}
-        className="flex-1 overflow-y-auto"
-        style={{ scrollBehavior: "auto" }}
+        className="flex-1 overflow-y-auto scroll-smooth px-0 sm:px-2"
+        style={{
+          scrollBehavior: "smooth",
+          contain: "layout style paint",
+          transform: "translateZ(0)",
+          backfaceVisibility: "hidden",
+        }}
       >
         {months.map(({ year, month, key }) => (
           <CalendarMonth
