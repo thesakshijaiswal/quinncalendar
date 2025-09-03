@@ -57,3 +57,13 @@ export const generateCalendarDays = (year, month, journalEntries = {}) => {
 
   return days;
 };
+
+export const formatDateForDisplay = (dateString) => {
+  const [day, month, year] = dateString.split("/");
+  const date = new Date(year, month - 1, day);
+  return date.toLocaleDateString("en-US", {
+    day: "numeric",
+    month: "long",
+    year: "numeric",
+  });
+};
