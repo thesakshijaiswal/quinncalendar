@@ -10,7 +10,13 @@ const Header = ({ currentMonth, currentYear }) => {
         <span className="text-gray-600">Hair Diary</span>
       </div>
       <div className="ml-auto font-medium text-gray-500">
-        {monthNames[currentMonth]} {currentYear}
+        <span className="font-semibold text-indigo-500">
+          <span className="sm:hidden">
+            {monthNames[currentMonth].slice(0, 3)}
+          </span>
+          <span className="hidden sm:inline">{monthNames[currentMonth]}</span>
+        </span>{" "}
+        {currentYear}
       </div>
     </div>
   );
