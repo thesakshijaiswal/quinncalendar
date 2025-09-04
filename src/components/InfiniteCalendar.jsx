@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { FaPlus } from "react-icons/fa";
 import journalData from "../data/journal.json";
 import Header from "./Header";
 import CalendarMonth from "./CalendarMonth";
@@ -35,6 +36,10 @@ const InfiniteCalendar = () => {
     setSelectedEntry(null);
   };
 
+  const handleAddClick = () => {
+    alert("Add new journal entry to QuinnCalender!");
+  };
+
   return (
     <div className="flex h-screen flex-col bg-gray-50">
       <Header currentMonth={currentMonth} currentYear={currentYear} />
@@ -55,6 +60,13 @@ const InfiniteCalendar = () => {
           />
         ))}
       </div>
+
+      <button
+        onClick={handleAddClick}
+        className="fixed right-6 bottom-6 flex h-14 w-14 items-center justify-center rounded-full bg-indigo-500 text-white shadow-lg transition hover:bg-indigo-700 active:scale-95 sm:h-16 sm:w-16"
+      >
+        <FaPlus size={20} />
+      </button>
 
       <JournalCarousel
         key={carouselKey}
