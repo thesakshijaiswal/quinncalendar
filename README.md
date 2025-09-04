@@ -53,6 +53,48 @@ npm install
 
 npm run dev
 
+## 📁 Folder Structure
+
+```
+
+├── .gitignore
+├── .prettierrc
+├── LICENSE
+├── README.md
+├── eslint.config.js
+├── index.html
+├── package-lock.json
+├── package.json
+├── public
+    ├── logo.png
+    ├── robots.txt
+    └── sitemap.xml
+├── src
+    ├── App.jsx
+    ├── components
+    │   ├── CalendarMonth.jsx
+    │   ├── CalenderDay.jsx
+    │   ├── CarouselContainer.jsx
+    │   ├── CarouselNavigation.jsx
+    │   ├── Header.jsx
+    │   ├── InfiniteCalendar.jsx
+    │   ├── JournalCard.jsx
+    │   ├── JournalCarousel.jsx
+    │   └── StarRating.jsx
+    ├── data
+    │   └── journal.json
+    ├── hooks
+    │   ├── useCarouselLogic.js
+    │   ├── useDragHandlers.js
+    │   └── useInfiniteScroll.js
+    ├── index.css
+    ├── main.jsx
+    └── utils
+    │   └── dateUtils.js
+└── vite.config.js
+
+```
+
 ## 🛠 Developer
 
 [![GitHub](https://img.shields.io/badge/GitHub-thesakshijaiswal-181717?style=for-the-badge&logo=github)](https://github.com/thesakshijaiswal)
