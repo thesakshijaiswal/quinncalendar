@@ -17,22 +17,20 @@ const JournalCard = ({ entry, type = "main", onClick, style, className }) => {
       </div>
       <div className="flex h-2/5 flex-col items-center justify-center p-2">
         <div className="mb-4 flex items-center justify-center space-x-3">
-          <StarRating rating={entry.rating} />
+          <StarRating rating={entry.rating} size="w-4 h-4 sm:w-6 sm:h-6 " />
           <span className="text-lg font-semibold text-gray-800">
             {entry.rating}
           </span>
         </div>
         <div className="mb-4 flex flex-wrap justify-center gap-2">
-          {entry.categories
-            .slice(0, 3)
-            .map((category, categoryIndex) => (
-              <span
-                key={categoryIndex}
-                className="rounded-full border border-blue-100 bg-blue-50 px-3 py-1.5 text-sm font-medium text-blue-600"
-              >
-                {category}
-              </span>
-            ))}
+          {entry.categories.slice(0, 3).map((category, categoryIndex) => (
+            <span
+              key={categoryIndex}
+              className="rounded-full border border-blue-100 bg-blue-50 px-3 py-1.5 text-sm font-medium text-blue-600"
+            >
+              {category}
+            </span>
+          ))}
           {entry.categories.length > 3 && (
             <span className="rounded-full bg-gray-100 px-3 py-1.5 text-sm font-medium text-gray-600">
               +{entry.categories.length - 3}
@@ -75,11 +73,7 @@ const JournalCard = ({ entry, type = "main", onClick, style, className }) => {
   );
 
   return (
-    <div
-      className={className}
-      style={style}
-      onClick={onClick}
-    >
+    <div className={className} style={style} onClick={onClick}>
       {type === "main" ? renderMainCard() : renderSideCard()}
     </div>
   );

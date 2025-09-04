@@ -1,13 +1,13 @@
 import { FaStar, FaStarHalfAlt, FaRegStar } from "react-icons/fa";
 
-const StarRating = ({ rating, maxStars = 5 }) => {
+const StarRating = ({ rating, maxStars = 5, size }) => {
   const normalizedRating = Math.max(0, Math.min(maxStars, rating || 0));
 
   const fullStars = Math.floor(normalizedRating);
   const hasHalfStar = normalizedRating % 1 !== 0;
   const emptyStars = maxStars - fullStars - (hasHalfStar ? 1 : 0);
 
-  const responsiveSize = "w-1.5 h-1.5 sm:w-3 sm:h-3 md:w-4 md:h-4";
+  const responsiveSize = size;
 
   return (
     <div className="flex items-center gap-0.5">

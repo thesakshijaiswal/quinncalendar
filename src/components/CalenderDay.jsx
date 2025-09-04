@@ -29,7 +29,10 @@ const CalendarDay = ({ dayData, journalEntries, onEntryClick }) => {
               >
                 <div className="mb-1 flex w-full justify-center">
                   <div className="bg-opacity-80 rounded-sm px-1 py-0.5 lg:px-2">
-                    <StarRating rating={entry.rating} size="xs" />
+                    <StarRating
+                      rating={entry.rating}
+                      size="w-1.5 h-1.5 sm:w-3 sm:h-3 md:w-4 md:h-4"
+                    />
                   </div>
                 </div>
 
