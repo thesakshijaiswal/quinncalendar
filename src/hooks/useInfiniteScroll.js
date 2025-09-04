@@ -24,6 +24,9 @@ const useInfiniteScroll = (months, setMonths) => {
     const container = scrollContainerRef.current;
     if (!container) return;
 
+    const zoomFactor = window.devicePixelRatio || 1;
+    const scrollThreshold = 100 * zoomFactor;
+
     const containerHeight = container.clientHeight;
     const scrollTop = container.scrollTop;
     const scrollBottom = scrollTop + containerHeight;
@@ -57,7 +60,7 @@ const useInfiniteScroll = (months, setMonths) => {
       setCurrentYear(closestMonth.year);
     }
 
-    if (scrollTop < 100) {
+    if (scrollTop < scrollThreshold) {
       const first = months[0];
       const prevMonth = getAdjacentMonth(first.year, first.month, -1);
       setMonths((prev) => [prevMonth, ...prev]);
@@ -67,7 +70,7 @@ const useInfiniteScroll = (months, setMonths) => {
       });
     }
 
-    if (scrollBottom > container.scrollHeight - 100) {
+    if (scrollBottom >= container.scrollHeight - scrollThreshold - 1) {
       const last = months[months.length - 1];
       const nextMonth = getAdjacentMonth(last.year, last.month, 1);
       setMonths((prev) => [...prev, nextMonth]);
