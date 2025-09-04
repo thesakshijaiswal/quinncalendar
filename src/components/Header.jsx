@@ -1,10 +1,9 @@
 import { monthNames } from "../utils/dateUtils";
-import logo from "../../public/logo.png";
 
 const Header = ({ currentMonth, currentYear }) => {
   return (
     <div className="flex items-center bg-indigo-100/20 px-4 py-3 shadow-sm">
-      <img src={logo} alt="logo" className="mr-2 h-10 w-10" />
+      <img src="/logo.png" alt="logo" className="mr-2 h-10 w-10" />
       <div className="text-base font-semibold md:text-lg">
         <span className="mr-1 text-indigo-500">My</span>
         <span className="text-gray-600">Hair Diary</span>
