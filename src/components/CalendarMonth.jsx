@@ -47,7 +47,8 @@ const CalendarMonth = ({
         ))}
       </div>
 
-      <div className="grid grid-cols-7 gap-0">
+      <div className="grid min-h-screen grid-cols-7 gap-0">
+        {" "}
         {calendarDays.map((dayData, index) => (
           <CalendarDay
             key={`${monthKey}-${index}`}
