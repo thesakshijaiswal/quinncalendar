@@ -1,4 +1,5 @@
 import StarRating from "./StarRating";
+
 const CalendarDay = ({ dayData, journalEntries, onEntryClick }) => {
   if (!dayData) {
     return (
@@ -8,6 +9,33 @@ const CalendarDay = ({ dayData, journalEntries, onEntryClick }) => {
 
   const { day, dateKey, hasEntry } = dayData;
   const dayEntries = journalEntries[dateKey] || [];
+
+  const getCategoryInitials = (category) => {
+    return category
+      .split(" ")
+      .map((word) => word.charAt(0).toUpperCase())
+      .join("");
+  };
+
+  const getCategoryColor = (category) => {
+    const colors = [
+      "bg-indigo-600/70",
+      "bg-purple-600/70",
+      "bg-blue-600/70",
+      "bg-green-600/70",
+      "bg-yellow-600/70",
+      "bg-red-600/70",
+      "bg-pink-600/70",
+      "bg-orange-600/70",
+      "bg-teal-600/70",
+      "bg-cyan-600/70",
+    ];
+
+    const hash = category
+      .split("")
+      .reduce((acc, char) => acc + char.charCodeAt(0), 0);
+    return colors[hash % colors.length];
+  };
 
   return (
     <div
@@ -25,7 +53,7 @@ const CalendarDay = ({ dayData, journalEntries, onEntryClick }) => {
             {dayEntries.map((entry, index) => (
               <div
                 key={index}
-                className="flex flex-col items-center justify-center"
+                className="flex flex-col items-center justify-center gap-2"
               >
                 <div className="mb-1 flex w-full justify-center">
                   <div className="bg-opacity-80 rounded-sm px-1 py-0.5 lg:px-2">
@@ -49,6 +77,21 @@ const CalendarDay = ({ dayData, journalEntries, onEntryClick }) => {
                     }}
                   />
                 </div>
+
+                {entry.categories && entry.categories.length > 0 && (
+                  <div className="w-full px-1">
+                    <div className="flex flex-wrap items-center justify-center gap-1 sm:gap-1.5">
+                      {entry.categories.map((category, catIndex) => (
+                        <div
+                          key={catIndex}
+                          className={`flex h-5 w-5 items-center justify-center rounded-full ${getCategoryColor(category)} text-[7px] font-semibold text-white shadow-sm sm:h-6 sm:w-6 sm:text-xs md:h-7 md:w-7 lg:h-8 lg:w-8`}
+                        >
+                          {getCategoryInitials(category)}
+                        </div>
+                      ))}
+                    </div>
+                  </div>
+                )}
               </div>
             ))}
           </div>
