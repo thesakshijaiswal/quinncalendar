@@ -50,8 +50,11 @@ const CarouselContainer = ({
         className="relative z-10 h-[660px] w-96 transition-all duration-500 ease-out"
         style={{
           transform: isDragging
-            ? `translateX(${(currentX - startX) * 0.1}px)`
+            ? `translateX(${(currentX - startX) * 0.3}px)`
             : "scale(1)",
+          transition: isDragging
+            ? "none"
+            : "transform 0.4s cubic-bezier(0.22, 1, 0.36, 1)",
         }}
       />
 
