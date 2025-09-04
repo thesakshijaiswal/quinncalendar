@@ -11,6 +11,7 @@ const InfiniteCalendar = () => {
   const now = new Date();
   const [isCarouselOpen, setIsCarouselOpen] = useState(false);
   const [selectedEntry, setSelectedEntry] = useState(null);
+  const [carouselKey, setCarouselKey] = useState(0);
 
   const [months, setMonths] = useState([
     {
@@ -25,6 +26,7 @@ const InfiniteCalendar = () => {
 
   const handleEntryClick = (entry) => {
     setSelectedEntry(entry);
+    setCarouselKey((prev) => prev + 1);
     setIsCarouselOpen(true);
   };
 
@@ -38,7 +40,8 @@ const InfiniteCalendar = () => {
       <Header currentMonth={currentMonth} currentYear={currentYear} />
       <div
         ref={scrollContainerRef}
-        className="scrollbar-hide flex-1 overflow-y-auto"
+        className="h-screen overflow-y-auto"
+        style={{ scrollbarWidth: "none", msOverflowStyle: "none" }}
       >
         {months.map((monthData) => (
           <CalendarMonth
@@ -54,6 +57,7 @@ const InfiniteCalendar = () => {
       </div>
 
       <JournalCarousel
+        key={carouselKey}
         isOpen={isCarouselOpen}
         onClose={handleCloseCarousel}
         initialEntry={selectedEntry}
